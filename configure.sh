@@ -27,6 +27,7 @@ if [ -d build ]; then
 else
     mkdir build
     cd build
+
     ../configure --prefix=${install_path}
 fi
 
