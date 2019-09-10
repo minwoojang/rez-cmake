@@ -8,13 +8,13 @@ echo -e "\n============="
 echo -e "=== BUILD ==="
 echo -e "=============\n"
 
-echo -e "BUILD PATH: ${build_path}\n"
+echo -e "BUILD PATH: ${build_path}"
 echo -e "CMAKE VERSION: ${cmake_version}"
 
 cd $build_path
 
 # We build CMake
-echo -e "Building CMake-${cmake_version}...\n"
+echo -e "\nBuilding CMake-${cmake_version}...\n"
 
 make -j${REZ_BUILD_THREAD_COUNT}
 

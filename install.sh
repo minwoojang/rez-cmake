@@ -8,13 +8,13 @@ echo -e "\n==============="
 echo -e "=== INSTALL ==="
 echo -e "===============\n"
 
-echo -e "BUILD PATH: ${build_path}\n"
+echo -e "BUILD PATH: ${build_path}"
 echo -e "CMAKE VERSION: ${cmake_version}"
 
 cd $build_path
 
 # We finally install CMake
-echo -e "Installing CMake-${cmake_version}...\n"
+echo -e "\nInstalling CMake-${cmake_version}...\n"
 
 make install
 
