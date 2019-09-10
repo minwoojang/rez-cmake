@@ -30,8 +30,11 @@ tools = [
     "cmake"
 ]
 
+with scope("config") as config:
+    config.build_thread_count = "logical_cores"
+
 #TODO: Use the SHA1 of the archive instead.
-uuid = "cmake.3.15.3"
+uuid = "cmake-3.15.3"
 
 def commands():
     env.PATH.prepend("{root}/bin")

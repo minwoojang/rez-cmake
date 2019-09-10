@@ -5,28 +5,34 @@ include(RezRepository)
 include(ExternalProject)
 
 set(cmake_version 3.15.3)
-set(cmake_short_version 3.15)
 
 # CMake
 rez_set_archive(
-    url_cmake cmake/cmake-${cmake_version}.tar.gz
-    $ENV{REZ_REPO_PAYLOAD_DIR}/cmake/cmake-${cmake_version}.tar.gz
+    cmake_url cmake/cmake-${cmake_version}.tar.gz
+    https://github.com/Kitware/CMake/releases/download/v3.15.3/cmake-3.15.3.tar.gz
 )
 
-ExternalProject_add(
+# The environment variable REZ_TMP_PATH is meant to point to a location such as "/tmp/rez".
+set(EXTRACT_DIR $ENV{REZ_TMP_PATH}/cmake/${cmake_version})
+set(BUILD_DIR ${EXTRACT_DIR}/build)
+
+# We configure/build/install CMake through the ExternalProject_Add macro,
+# using three different shell scripts for each of these steps.
+ExternalProject_Add(
     build_cmake
-    URL ${url_cmake}
+    URL ${cmake_url}
     PREFIX cmake
-    CONFIGURE_COMMAND ./configure --prefix=${CMAKE_INSTALL_PREFIX}
-    BUILD_COMMAND make -j$ENV{REZ_BUILD_THREAD_COUNT} VERBOSE=1
-    INSTALL_COMMAND make install VERBOSE=1
-    BUILD_IN_SOURCE 1
-    ALWAYS 1
+    SOURCE_DIR ${EXTRACT_DIR}
+    CONFIGURE_COMMAND bash ${CMAKE_SOURCE_DIR}/configure.sh ${EXTRACT_DIR} ${CMAKE_INSTALL_PREFIX} ${cmake_version}
+    BUILD_COMMAND bash ${CMAKE_SOURCE_DIR}/build.sh ${BUILD_DIR} ${cmake_version}
+    INSTALL_COMMAND bash ${CMAKE_SOURCE_DIR}/install.sh ${BUILD_DIR} ${cmake_version}
 )
 
+# We use a bogus CMake "install" step in order to be able to properly finish
+# and get out of the CMake script.
 install(
     CODE
     "execute_process(
-        COMMAND echo \"\n=== CMAKE BUILD FINISHED! ===\n\"
+        COMMAND echo \"\n=== CMake-${cmake_version} SETUP FINISHED ===\n\"
     )"
 )
