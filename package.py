@@ -19,7 +19,7 @@ description = \
     """
 
 requires = [
-    "gcc-6.3.1"
+    "gcc-6"
 ]
 
 variants = [
