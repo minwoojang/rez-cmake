@@ -6,7 +6,7 @@ set -e
 BUILD_PATH=$1
 CMAKE_VERSION=${REZ_BUILD_PROJECT_VERSION}
 
-# We print the arguments passed to the Bash script
+# We print the arguments passed to the Bash script.
 echo -e "\n"
 echo -e "============="
 echo -e "=== BUILD ==="
@@ -18,7 +18,7 @@ echo -e "[BUILD][ARGS] CMAKE VERSION: ${CMAKE_VERSION}"
 
 cd ${BUILD_PATH}
 
-# We build CMake
+# We build CMake.
 echo -e "\n"
 echo -e "[BUILD] Building CMake-${CMAKE_VERSION}..."
 echo -e "\n"
