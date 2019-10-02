@@ -21,7 +21,6 @@ description = \
 requires = [
     "gcc-6"
 ]
-
 variants = [
     ["platform-linux"]
 ]
@@ -35,8 +34,10 @@ build_system = "cmake"
 with scope("config") as config:
     config.build_thread_count = "logical_cores"
 
-#TODO: Use the SHA1 of the archive instead.
-uuid = "cmake-3.15.3"
+uuid = "cmake-{version}".format(version=str(version))
 
 def commands():
     env.PATH.prepend("{root}/bin")
+
+    # Helper environment variables.
+    env.CMAKE_BINARY_PATH.set("{root}/bin")
