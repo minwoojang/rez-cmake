@@ -38,7 +38,8 @@ echo -e "\n"
 mkdir -p ${BUILD_PATH}
 cd ${BUILD_PATH}
 
-${EXTRACT_PATH}/configure --prefix=${INSTALL_PATH}
+${EXTRACT_PATH}/configure \
+    --prefix=${INSTALL_PATH}
 
 echo -e "\n"
 echo -e "[CONFIGURE] Finished configuring CMake-${CMAKE_VERSION}!"
