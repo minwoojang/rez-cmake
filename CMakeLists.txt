@@ -6,13 +6,12 @@ include(ExternalProject)
 
 # CMake
 rez_set_archive(
-    CMAKE_URL cmake/cmake-${REZ_BUILD_PROJECT_VERSION}.tar.gz
-    https://github.com/Kitware/CMake/releases/download/v${REZ_BUILD_PROJECT_VERSION}/cmake-${REZ_BUILD_PROJECT_VERSION}.tar.gz
+    CMAKE_URL cmake/cmake-${REZ_BUILD_PROJECT_VERSION}-linux-x86_64.tar.gz
+    https://github.com/Kitware/CMake/releases/download/v${REZ_BUILD_PROJECT_VERSION}/cmake-${REZ_BUILD_PROJECT_VERSION}-linux-x86_64.tar.gz
 )
 
 # The environment variable REZ_TMP_PATH is meant to point to a location such as "/tmp/rez".
 set(EXTRACT_DIR $ENV{REZ_TMP_PATH}/cmake/${REZ_BUILD_PROJECT_VERSION})
-set(BUILD_DIR ${EXTRACT_DIR}/build)
 
 # We configure/build/install CMake through the ExternalProject_Add macro,
 # using three different shell scripts for each of these steps.
@@ -25,9 +24,9 @@ ExternalProject_Add(
     SOURCE_DIR ${EXTRACT_DIR}
     PATCH_COMMAND ""
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND bash ${CMAKE_SOURCE_DIR}/configure.sh ${EXTRACT_DIR} ${BUILD_DIR}
-    BUILD_COMMAND bash ${CMAKE_SOURCE_DIR}/build.sh ${BUILD_DIR}
-    INSTALL_COMMAND bash ${CMAKE_SOURCE_DIR}/install.sh ${BUILD_DIR}
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND bash ${CMAKE_SOURCE_DIR}/install.sh ${EXTRACT_DIR}
 )
 
 # We use a bogus CMake "install" step in order to be able to properly finish

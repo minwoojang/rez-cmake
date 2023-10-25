@@ -2,7 +2,7 @@
 
 name = "cmake"
 
-version = "3.15.3"
+version = "3.27.7"
 
 authors = [
     "Andy Cedilnik",
@@ -17,10 +17,6 @@ description = \
     CMake is a cross-platform free and open-source software tool for managing the build process
     of software using a compiler-independent method.
     """
-
-requires = [
-    "gcc-6+"
-]
 
 variants = [
     ["platform-linux"]
