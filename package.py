@@ -4,34 +4,35 @@ name = "cmake"
 
 version = "3.27.7"
 
+description = """
+    CMake is a cross-platform free and open-source software tool for managing the build process
+    of software using a compiler-independent method.
+    """
+
 authors = [
     "Andy Cedilnik",
     "Bill Hoffman",
     "Brad King",
     "Ken Martin",
-    "Alexander Neundorf"
-]
-
-description = \
-    """
-    CMake is a cross-platform free and open-source software tool for managing the build process
-    of software using a compiler-independent method.
-    """
-
-variants = [
-    ["platform-linux"]
+    "Alexander Neundorf",
 ]
 
 tools = [
-    "cmake"
+    "cmake",
+]
+
+variants = [
+    [
+        "platform-linux",
+    ],
 ]
 
 build_system = "cmake"
 
+
 with scope("config") as config:
     config.build_thread_count = "logical_cores"
 
-uuid = "cmake-{version}".format(version=str(version))
 
 def commands():
     env.PATH.prepend("{root}/bin")
