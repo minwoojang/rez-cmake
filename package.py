@@ -24,6 +24,7 @@ tools = [
 variants = [
     [
         "platform-linux",
+        "arch-x86_64"
     ],
 ]
 
